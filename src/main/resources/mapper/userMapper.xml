@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+<!--    映射-->
+    <resultMap id="userMapperEntity" type="com.example.demo.entity.User">
+<!--        主键不能省略-->
+        <result column="id" property="id"></result>
+        <result column="is_delete" property="isDelete"></result>
+        <result column="created_time" property="createdTime"></result>
+        <result column="created_user" property="createdUser"></result>
+        <result column="modified_user" property="modifiedUser"></result>
+        <result column="modified_time" property="modifiedTime"></result>
+    </resultMap>
+    <!--id属性： 表示映射的接口中方法的名称，直接在标签的内容来编写sql语句-->
+    <insert id="createName" useGeneratedKeys="true" keyProperty="id">
+        insert into user (loginName,password) values (#{loginName},#{password});
+    </insert>
+    <select id="findAll" resultMap="userMapperEntity">
+        SELECT * FROM user
+    </select>
+    <select id="findName" resultMap="userMapperEntity">
+        SELECT loginName FROM user where loginName = #{loginName}
+    </select>
+</mapper>

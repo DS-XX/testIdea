@@ -2,10 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.User;
 import com.example.demo.mapper.UserMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -17,21 +14,26 @@ public class UserController {
     UserMapper userMapper;
 
     @GetMapping("/list")
-    public List<User> getUser() {
+    public User getUser() {
         return userMapper.findAll();
     }
 
     @GetMapping("/name")
-    public List<User> getName() {
-        List<User> a = userMapper.findName();
+    public String getName(String loginName) {
+        String a = userMapper.findName(loginName);
         System.out.println(a);
         return a;
     }
 
     @PostMapping("/createName")
-    public List<User> createName(User params) {
-        System.out.println(params);
-        return userMapper.createName();
+    public Integer createName(@RequestBody User params) {
+        if(params.getLoginName()!=null){
+            String useName = userMapper.findName(params.getLoginName());
+            if(useName==null){
+                return userMapper.createName(params);
+            }
+        }
+        return 0;
     }
 
 
