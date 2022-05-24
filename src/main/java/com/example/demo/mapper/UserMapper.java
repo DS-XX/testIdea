@@ -7,5 +7,4 @@ public interface UserMapper {
     User findAll();
     String findName(String user);
     Integer createName(User user);
-
 }

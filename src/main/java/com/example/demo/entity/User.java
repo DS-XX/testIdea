@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import lombok.Data;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.io.Serializable;
 

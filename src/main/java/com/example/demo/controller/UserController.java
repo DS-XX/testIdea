@@ -12,9 +12,17 @@ import java.util.List;
 public class UserController {
     @Resource
     UserMapper userMapper;
+    @RequestMapping("/test")
+    public User getTest(){
+        User user = new User();
+        user.setId(1);
+        user.setPassword("4");
+        return user;
+    }
 
     @GetMapping("/list")
     public User getUser() {
+        System.out.println("diaoyonlezhege fangfa");
         return userMapper.findAll();
     }
 
