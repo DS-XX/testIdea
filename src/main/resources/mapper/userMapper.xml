@@ -23,4 +23,7 @@
     <select id="findName" resultMap="userMapperEntity">
         SELECT loginName FROM user where loginName = #{loginName}
     </select>
+    <select id="login" resultMap="userMapperEntity">
+        SELECT * FROM user where loginName = #{loginName} and password = #{password}
+    </select>
 </mapper>

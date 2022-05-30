@@ -47,11 +47,11 @@ public class UserController {
 
     @PostMapping("/login")
     public List loginName(@RequestBody User params) {
-        if(params.getLoginName()!=null){
-            List useName = userMapper.findName(params.getLoginName());
-            if(useName==null){
-                return userMapper.createName(params);
-            }
+        String loginName = params.getLoginName();
+        String password = params.getPassword();
+        if(loginName!=null && password != null){
+            List x = userMapper.login(params);
+            System.out.println(x+"this is back list");
         }
         return null;
     }
