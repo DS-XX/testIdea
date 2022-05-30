@@ -4,7 +4,7 @@ import java.util.List;
 import com.example.demo.entity.User;
 
 public interface UserMapper {
-    User findAll();
-    String findName(String user);
-    Integer createName(User user);
+    List findAll();
+    List findName(String user);
+    List createName(User user);
 }

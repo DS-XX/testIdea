@@ -17,34 +17,44 @@ public class UserController {
         User user = new User();
         user.setId(1);
         user.setPassword("4");
+        System.out.println(user);
         return user;
     }
 
     @GetMapping("/list")
-    public User getUser() {
+    public List getUser() {
         System.out.println("diaoyonlezhege fangfa");
         return userMapper.findAll();
     }
 
     @GetMapping("/name")
-    public String getName(String loginName) {
-        String a = userMapper.findName(loginName);
+    public List getName(String loginName) {
+        List a = userMapper.findName(loginName);
         System.out.println(a);
         return a;
     }
 
     @PostMapping("/createName")
-    public Integer createName(@RequestBody User params) {
+    public List createName(@RequestBody User params) {
         if(params.getLoginName()!=null){
-            String useName = userMapper.findName(params.getLoginName());
+            List useName = userMapper.findName(params.getLoginName());
             if(useName==null){
                 return userMapper.createName(params);
             }
         }
-        return 0;
+        return null;
     }
 
-
+    @PostMapping("/login")
+    public List loginName(@RequestBody User params) {
+        if(params.getLoginName()!=null){
+            List useName = userMapper.findName(params.getLoginName());
+            if(useName==null){
+                return userMapper.createName(params);
+            }
+        }
+        return null;
+    }
 //    @PostMapping("/test")
 //    public  String postUser(){
 //        return "postUser";
